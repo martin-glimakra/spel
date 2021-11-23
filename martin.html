@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gåta</title>
+</head>
+<body>
+    <div id=allt>
+    <h1>Vad är det som går och går</h1>
+    <div id="rätt-svar">
+        <h2>rätt</h2>
+
+    </div>
+    <div id="fel-svar">
+        <h2>fel</h2>
+    </div>
+
+    <form action="#">
+        <fieldset>
+            <p>
+                <label for="element">Ange ett element</label>
+                <br>
+                <input type="text" id="element" required>    
+            </p>
+            <p>
+                <label for="text">Text innehåll</label>
+                <br>
+                <input type="text" id="text" required>    
+            </p>
+            <input type="submit" value="Skapa element">
+    </fieldset>
+    </form>
+
+    <!-- <button onclick="gameOver()">hhhhh</button> -->
+    <script>
+        let hurMångaFörsök = 0
+
+        let rätt = document.getElementById("rätt-svar")
+        let fel = document.getElementById("fel-svar")
+        const form = document.querySelector("form");
+
+
+    form.addEventListener("submit", function() {
+    let element = document.getElementById("element");
+    console.log("Element: ", element, element.value);
+
+    // obs - ska/bör valideras, ex vilka html element
+    let elementValue = element.value;
+
+    // vilken text?
+    let text = document.getElementById("text");
+    console.log("Text: ", text, text.value);
+
+    // obs - ska/bör valideras, ex textValue.length
+    let textValue = text.value;
+
+    // skapa element
+    let htmlElement = document.createElement(elementValue);
+
+    // lägg till text
+    htmlElement.innerText = textValue;
+
+    if (textValue === 'farfar') {
+        grattis()
+        rätt.appendChild(htmlElement)
+    }
+    else {
+            // lägg till elementet i content
+            fel.appendChild(htmlElement);
+            hurMångaFörsök ++
+            if (hurMångaFörsök > 2) {
+                gameOver()
+            }
+    }
+});
+function gameOver () {
+    document.getElementById("allt").remove()
+    let body = document.querySelector("body")
+
+        // skapa element
+        let htmlElement = document.createElement("p");
+
+        // lägg till text
+        htmlElement.innerText = 'game over';
+
+        // lägg till elementet i content
+        body.appendChild(htmlElement);
+}
+
+function grattis () {
+    document.getElementById("allt").remove()
+    let body = document.querySelector("body")
+
+        // skapa element
+        let htmlElement = document.createElement("p");
+
+        // lägg till text
+        htmlElement.innerText = 'Grattis';
+
+        // lägg till elementet i content
+        body.appendChild(htmlElement);
+}
+
+    </script>
+    </div>
+</body>
+</html>
